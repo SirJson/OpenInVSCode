@@ -35,7 +35,7 @@ def find_code():
     if osname == "nt":
         result = run('powershell.exe -Command "Get-Command code | Select-Object -ExpandProperty Definition"', shell=True, stdout=PIPE)
         result.check_returncode()
-        return str(result.stdout)
+        return str(result.stdout.decode("utf-8")).rstrip()
     else:
         return 'code'
 
